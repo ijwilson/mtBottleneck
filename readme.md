@@ -11,7 +11,7 @@ by __Wilson, Carling, Alston, Floros, Pyle, Hudson, Sallevelt, Lamperti, Carelli
 The contents of this can be downloaded by using 
 
 ```
-git clone https://github.com/wijjy/mtBottleneck.git
+git clone https://github.com/ijwilson/mtBottleneck.git
 ```
 
 or  alternatively, files can be downloaded individually.
