@@ -14,8 +14,6 @@ The contents of this can be downloaded by using
 git clone https://github.com/ijwilson/mtBottleneck.git
 ```
 
-or  alternatively, files can be downloaded individually.
-
 ## Prerequisites
 
 To run the code in this directory you need [JAGS](http://mcmc-jags.sourceforge.net/), [R](https://cran.r-project.org/) and the R packages [coda](https://cran.r-project.org/web/packages/coda/index.html ) and [rjags](https://cran.r-project.org/web/packages/rjags/index.html). 
@@ -81,7 +79,7 @@ Real data is far more difficult to work with that the idealised data produced th
 
 ### Code to drive jags
 
-AJGS
+
 
 ## JAGS Code
 
