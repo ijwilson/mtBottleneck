@@ -73,12 +73,11 @@ We can also include the technique or the lab that was used to obtain the estimat
 
 ```
 ## 
-##   version of the censored_mutbeta file without censoring for simulated data
+##   Simple Model without censoring
 ##
 model {                               ## meaurement loop
   for (i in 1:NFam) {                 ## loop over families 
     parent[i] ~ dnorm(p[i],taum)      ## measurement error for parent
-    
     for (j in 1:N[i]) {               ## iterate over siblings
       off[i,j] ~ dnorm(y[i,j], taum)  ## measurement error for offspring
       y[i,j] ~ dbeta(alpha[i], beta[i]) T(0.0001,0.9999) 
@@ -95,9 +94,8 @@ model {                               ## meaurement loop
     beta[i] <- (1-p[i])*b[mutation[i]]/(1-b[mutation[i]]) 
   }
   
-   sigmam ~ dunif(0, 0.4)
-   taum <- pow(sigmam,-2)
-
+  sigmam ~ dunif(0, 0.4)
+  taum <- pow(sigmam,-2)
 
   bmean ~ dunif(0,1)
   taubb <- pow(sigmabb,-2)
@@ -111,45 +109,41 @@ model {                               ## meaurement loop
 
 ### Simple Example
 
-The file `R/example.R` gives simple code for 
+The file `R/example.R` gives simple code for the simple data example.  Starting R and souring this file produces the output
 
-
-### A simple simulation
-
-The file [prepareSimData.R](R/prepareSimData.R) is code to simulate some 
-very simple data for a mitochondrial bottleneck.  
-
-These data can be analysed for a dataset containing the proband by sourcing 
-the file betamodel_Proband.R from within R.  If the prerequisites are installed 
-the start of the output should eventually look like 
-
-```
-> source("R/betamodel_Proband.R")
-We have simulated 3285 potential samples, taking the first 100
+```  
+Loading required package: rjags
+Loading required package: coda
 Linked to JAGS 4.0.0
 Loaded modules: basemod,bugs
 Compiling model graph
    Resolving undeclared variables
    Allocating nodes
 Graph information:
-   Observed stochastic nodes: 200
-   Unobserved stochastic nodes: 204
-   Total graph size: 2121
+   Observed stochastic nodes: 15
+   Unobserved stochastic nodes: 20
+   Total graph size: 150
 
 Initializing model
 
   |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
   |**************************************************| 100%
   |**************************************************| 100%
-  
-  ...
-  
 ```
-![coda plot of MCMC output](probandplot.png)
+
+![example plot](examplecoda.png)
 
 
-Note that the initial analysis was done under JAGS 3.3.0.  The new version 4.0.0 of 
-JAGS produces identical results.  Eventually this file should produce three simulated sets
+
+## Ascertainment Bias Simulation
+
+
+The file [prepareSimData.R](R/prepareSimData.R) allows you to simulate data under three types of ascertainment for a bottleneck.
+
+The R code to simulate, run a JAGS analysis and plot output is in teh file [compareMotherSibling.R](compareMotherSibling.R).
+```
+
+Eventually this file should produce three simulated sets
 of results for mother-child pairs that are ascertained through the mother, through the proband (child),
 or through a sibling of the child.  
 
@@ -157,17 +151,3 @@ or through a sibling of the child.
 We can see that ascertainment through the proband produces a biased estimated of inbreeding.
 
 ![violin plot comparing three sorts of ascertainment](violin.png)
-
-
-### Analysing Real data
-
-Real data is far more difficult to work with that the idealised data produced through simulations.  
-
-
-### Code to drive jags
-
-
-
-## JAGS Code
-
-JAGS (Just another Gibbs Sampler) is ...
