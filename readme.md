@@ -16,13 +16,13 @@ git clone https://github.com/ijwilson/mtBottleneck.git
 
 On any system that has git.  Alternativelty use [this link](https://github.com/ijwilson/mtBottleneck/archive/master.zip) to download a zipped archive.
 
-## Prerequisites
+### Prerequisites
 
 To run the code here you need [JAGS](http://mcmc-jags.sourceforge.net/), [R](https://cran.r-project.org/) and the R packages [coda](https://cran.r-project.org/web/packages/coda/index.html ), [rjags](https://cran.r-project.org/web/packages/rjags/index.html) and [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html).
 
 
 
-## Data Structure
+### Data Structure
 
 JAGS allows you to use R data structures to run code.  The structure for the main analyses in the paper 
 
@@ -58,7 +58,7 @@ example <- list(
 ```
 
 
-### With Technique
+#### With Publication
 
 We can also include the technique or the lab that was used to obtain the estimates.  To do this we add another two variables.  
 
@@ -67,9 +67,9 @@ We can also include the technique or the lab that was used to obtain the estimat
 
 
 
-## JAGS Models
+### JAGS Models
 
-### Simple Model
+#### Simple Model for Basic Data
 
 ```
 ## 
