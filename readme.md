@@ -133,20 +133,16 @@ Initializing model
 
 ![example plot](examplecoda.png)
 
-
-
 ## Ascertainment Bias Simulation
 
 
 The file [prepareSimData.R](R/prepareSimData.R) allows you to simulate data under three types of ascertainment for a bottleneck.
 
 The R code to simulate, run a JAGS analysis and plot output is in teh file [compareMotherSibling.R](compareMotherSibling.R).
-```
 
 Eventually this file should produce three simulated sets
 of results for mother-child pairs that are ascertained through the mother, through the proband (child),
 or through a sibling of the child.  
-
 
 We can see that ascertainment through the proband produces a biased estimated of inbreeding.
 
