@@ -1,13 +1,13 @@
 ## 
-##   version of the censored_mutbeta file withoput censoring for simulated data
+##   version of the censored_mutbeta file without censoring for simulated data
 ##
 model {
-  for (i in 1:NFam) {                ## loop over families ## meaurement loop
-    parent[i] ~ dnorm(p[i],taum)     ## measurement error for parent
+  for (i in 1:NFam) {                 ## loop over families ## meaurement loop
+    parent[i] ~ dnorm(p[i],taum)      ## measurement error for parent
     
-    for (j in 1:N[i]) {              ## iterate over siblings
-      off[i,j] ~ dnorm(y[i,j],taum)  ## measurement error for offspring
-      y[i,j] ~ dbeta(alpha[i],beta[i]) T(0.0001,0.9999) 
+    for (j in 1:N[i]) {               ## iterate over siblings
+      off[i,j] ~ dnorm(y[i,j], taum)  ## measurement error for offspring
+      y[i,j] ~ dbeta(alpha[i], beta[i]) T(0.0001,0.9999) 
     }
   }
 
@@ -21,9 +21,7 @@ model {
     beta[i] <- (1-p[i])*b[mutation[i]]/(1-b[mutation[i]]) 
   }
   
- # taum ~ dgamma(0.001,0.001)
- # sigmam <- 1/sqrt(taum)
-   sigmam ~ dunif(0,0.05)
+   sigmam ~ dunif(0, 0.4)
    taum <- pow(sigmam,-2)
 
 

@@ -1,19 +1,20 @@
-getMotherDaughters <- function(nfamilies,b,d,betapars,noffspring=3) {
-  het_mother <- rbeta(nfamilies,betapars[1],betapars[2])  
+
+
+getMotherDaughters <- function(nfamilies, b, d, betapars, noffspring=3) {
+  het_mother <- rbeta(nfamilies, betapars[1], betapars[2])  
   alpha <- het_mother*b/(1-b)
   beta <- (1-het_mother)*b/(1-b)
-  daughters <- matrix(rbeta(noffspring*nfamilies,alpha,beta),ncol=noffspring)
+  daughters <- matrix(rbeta(noffspring*nfamilies, alpha, beta), ncol=noffspring)
   pselected <- (daughters[,1]-d[1])/(d[2]-d[1])
   proband <- runif(nfamilies) < pselected
   motherproband <- runif(nfamilies) < (het_mother-d[1])/(d[2]-d[1])
-  list(het_mother=het_mother,het_daughters=daughters,proband=proband,motherproband = motherproband)
+  list(het_mother=het_mother, het_daughters=daughters, proband=proband, motherproband = motherproband)
 }
 
 
+aa <- getMotherDaughters(40000, b=b, d=c(0.3, 0.7), betapars=c(1, 4))
 
-aa <- getMotherDaughters(40000,b=b,d=c(0.3,0.7),betapars=c(1,4))
-
-ss <- min(sum(aa$motherproband==TRUE),sum(aa$proband==TRUE&aa$motherproband==FALSE),100)
+ss <- min(sum(aa$motherproband==TRUE), sum(aa$proband==TRUE&aa$motherproband==FALSE), 100)
 if (ss<100) {
   cat("problem with first data set\n")
   cat("we only have sample size of",ss)
