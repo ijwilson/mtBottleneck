@@ -1,0 +1,37 @@
+
+model {
+
+ for (i in 1:NFam) {                                 ## loop over families
+    parent[i] ~ dnorm(p[i],taum[publication[i]])     ## measurement error for parent
+    censor.parent[i] ~ dinterval(parent[i],lim)
+ 
+    for (j in 1:N[i]) {                              ## iterate over siblings
+      off[i,j] ~ dnorm(y[i,j],taum[publication[i]])  ## measurement error for offspring
+      censor.off[i,j] ~ dinterval(off[i,j],lim)
+      y[i,j] ~ dbeta(alpha[i],beta[i]) T(0.0001,0.9999) 
+    }
+  }
+
+  for (i in 1:NFam) {                                ## priors 
+    alpha[i] <- p[i]*b[mutation[i]]/(1-b[mutation[i]])
+    beta[i] <- (1-p[i])*b[mutation[i]]/(1-b[mutation[i]]) 
+    p[i] ~ dunif(0,1)                                ## prior for the mother's heteroplasmy   
+  }
+
+  for (i in 1:Nmuts) {
+    b[i] ~ dnorm(bmean,taubb)T(0,1)
+  }
+ 
+  for (i in 1:Npub) {
+    taum[i] <- pow(sigmam[i],-2)
+    sigmam[i] ~ dnorm(mumm,taumm) T(0,)
+  }
+
+  taumm ~ dgamma(0.001,0.001)
+  mumm ~ dunif(0,0.5)
+  sigmamm <- 1/sqrt(taumm)    
+
+  bmean ~ dunif(0,1)
+  taubb <- pow(sigmabb,-2)
+  sigmabb ~dunif(0,1)
+}
