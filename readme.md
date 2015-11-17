@@ -58,7 +58,15 @@ example <- list(
 ```
 
 
-#### With Publication
+#### With publication and censoring
+
+Frequency estimates are bounded by 0 and 1, and the beta distribution does not allow values that reach 0 and 1.  To deal with this we allow censoring at 0 and 1.  To do this we need extra variables for the parental heteroplasmy and the offspring heteroplasmy.
+
+* **censor.off** is a matrix the same size as off, which is 0 for all those places where off=0, and 2 for all places where off=1, otherwise 1.
+* **censor.parent** is a vector the same size as parent, which is 0 for all those places where parent=0, and 2 for all places where parent=1, otherwise 1.
+
+The we need to replace all values where off=0 or off=1 by NA, and the same for parent.
+
 
 We can also include the technique or the lab that was used to obtain the estimates.  To do this we add another two variables.  
 
@@ -104,6 +112,8 @@ model {                               ## meaurement loop
 ```
 
 ### Adding Publication
+
+The full model used in the paper is in the file [jags/censored_pubmutbeta.jag](jags/censored_pubmutbeta.jag)
 
 ## R Code
 
