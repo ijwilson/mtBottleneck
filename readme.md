@@ -5,8 +5,8 @@ in the manuscript
 
 **Mitochondrial DNA Sequence Characteristics Modulate the Size of the Genetic Bottleneck**
 
-*Wilson, Carling, Alston, Floros, Pyle, Hudson, Sallevelt, Lamperti, Carelli, Bindoff, Samuels1,  Wonnapinij,
-  Zeviani, Taylor, Smeets, Horvath & Chinnery*.  
+*Wilson, Carling, Alston, Floros, Pyle, Hudson, Sallevelt, Lamperti, Carelli, Bindoff, 
+Samuels1,  Wonnapinij,  Zeviani, Taylor, Smeets, Horvath & Chinnery*.  
 
 The contents of this can be downloaded by using 
 
@@ -14,7 +14,7 @@ The contents of this can be downloaded by using
 git clone https://github.com/ijwilson/mtBottleneck.git
 ```
 
-On any system that has git.  Alternativelty use [this link](https://github.com/ijwilson/mtBottleneck/archive/master.zip) to download a zipped archive.
+on any system that has git.  Alternativelty use [this link](https://github.com/ijwilson/mtBottleneck/archive/master.zip) to download a zipped archive.
 
 ### Prerequisites
 
